@@ -11,6 +11,7 @@ const templates = [
     focus: 'Upper Body',
     duration: '5/WEEK',
     gender: 'MALE',
+    type: 'Strength',
     description: 'A superhero-inspired upper body program.',
     weeks: [
       {
@@ -75,6 +76,7 @@ const templates = [
     focus: 'Upper Body',
     duration: '5/WEEK',
     gender: 'MALE',
+    type: 'Strength',
     description: 'Get as strong as Thor!',
     weeks: [
       { week: 1, days: [{ day: 1, exercises: [{ id: '1', name: 'Deadlift', sets: 5, reps: 5 }] }] },
@@ -86,6 +88,7 @@ const templates = [
     focus: 'Whole Body',
     duration: '6/WEEK',
     gender: 'MALE',
+    type: 'Hypertrophy',
     description: "Jared Feather's go-to full body routine.",
     weeks: [
       { week: 1, days: [{ day: 1, exercises: [{ id: '1', name: 'Squat', sets: 4, reps: 8 }] }] },
@@ -97,6 +100,7 @@ const templates = [
     focus: 'Whole Body',
     duration: '6/WEEK',
     gender: 'MALE',
+    type: 'Conditioning',
     description: "Dr. Mike's favorite full body program.",
     weeks: [
       { week: 1, days: [{ day: 1, exercises: [{ id: '1', name: 'Bench Press', sets: 4, reps: 8 }] }] },
@@ -108,6 +112,7 @@ const templates = [
     focus: 'Glutes & Abs',
     duration: '6/WEEK',
     gender: 'MALE',
+    type: 'Hypertrophy',
     description: 'Focus on glutes and abs.',
     weeks: [
       { week: 1, days: [{ day: 1, exercises: [{ id: '1', name: 'Hip Thrust', sets: 4, reps: 10 }] }] },
@@ -119,6 +124,7 @@ const templates = [
     focus: 'Chest & Triceps',
     duration: '6/WEEK',
     gender: 'MALE',
+    type: 'Hypertrophy',
     description: 'Emphasize chest and triceps.',
     weeks: [
       { week: 1, days: [{ day: 1, exercises: [{ id: '1', name: 'Incline Press', sets: 4, reps: 8 }] }] },
@@ -130,6 +136,7 @@ const templates = [
     focus: 'Back & Biceps',
     duration: '6/WEEK',
     gender: 'MALE',
+    type: 'Hypertrophy',
     description: 'Emphasize back and biceps.',
     weeks: [
       { week: 1, days: [{ day: 1, exercises: [{ id: '1', name: 'Barbell Row', sets: 4, reps: 8 }] }] },
@@ -140,11 +147,13 @@ const templates = [
 const focusOptions = ['All', 'Upper Body', 'Whole Body', 'Glutes & Abs', 'Chest & Triceps', 'Back & Biceps'];
 const durationOptions = ['All', '5/WEEK', '6/WEEK'];
 const genderOptions = ['All', 'MALE', 'FEMALE'];
+const typeOptions = ['All', 'Strength', 'Hypertrophy', 'Conditioning', 'Rehab'];
 
 function TemplatesPage({ onAddToMyPrograms }) {
   const [focus, setFocus] = useState('All');
   const [duration, setDuration] = useState('All');
   const [gender, setGender] = useState('All');
+  const [type, setType] = useState('All');
   const [expandedId, setExpandedId] = useState(null);
   const [myProgramsIds, setMyProgramsIds] = useState([]);
   const [mediaModal, setMediaModal] = useState({ open: false, type: '', src: '', alt: '' });
@@ -152,7 +161,8 @@ function TemplatesPage({ onAddToMyPrograms }) {
   const filteredTemplates = templates.filter(t =>
     (focus === 'All' || t.focus === focus) &&
     (duration === 'All' || t.duration === duration) &&
-    (gender === 'All' || t.gender === gender)
+    (gender === 'All' || t.gender === gender) &&
+    (type === 'All' || t.type === type)
   );
 
   const handleExpand = (id) => {
@@ -189,22 +199,59 @@ function TemplatesPage({ onAddToMyPrograms }) {
   };
 
   return (
-    <section className="w-full py-16 px-4 bg-white flex flex-col dark:bg-neutral-900">
-      <h1 className="text-4xl font-extrabold text-primary mb-10 text-center dark:text-accent">Programming Templates</h1>
+    <section className="w-full py-16 px-4 bg-gray-100 flex flex-col dark:bg-neutral-900">
+      {/* Enhanced Header Section */}
+      <div className="w-full max-w-6xl mx-auto mb-12">
+        <div className="bg-gray-100 rounded-2xl shadow-lg p-8 dark:bg-neutral-800 dark:border dark:border-neutral-700">
+          <div className="flex flex-col md:flex-row items-center gap-6">
+            <div className="flex-shrink-0">
+              <img src={logo} alt="Romans Gym Logo" className="w-16 h-16 rounded-lg bg-secondary p-2" />
+            </div>
+            <div className="flex-1 text-center md:text-left">
+              <div className="uppercase text-xs text-accent font-semibold tracking-widest mb-2 dark:text-gray-300">
+                Workout Programs
+              </div>
+              <h1 className="text-4xl md:text-5xl font-extrabold text-primary mb-3 dark:text-gray-100">
+                Programming Templates
+              </h1>
+              <p className="text-accent text-lg leading-relaxed max-w-2xl dark:text-gray-300">
+                Discover and customize professional workout programs designed to help you achieve your fitness goals.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <div className="flex flex-col gap-2">
+                <span className="bg-primary text-secondary text-sm px-4 py-2 rounded-full font-semibold dark:bg-neutral-700 dark:text-gray-100">
+                  {filteredTemplates.length} Templates
+                </span>
+                <span className="bg-accent text-secondary text-sm px-4 py-2 rounded-full font-semibold dark:bg-neutral-600 dark:text-gray-100">
+                  Ready to Use
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* Filter Section */}
-      <div className="flex flex-col md:flex-row gap-4 mb-12 w-full max-w-6xl mx-auto">
-        <select className="flex-1 px-4 py-2 rounded border border-accent bg-white text-accent text-base dark:bg-neutral-800 dark:border-neutral-600 dark:text-gray-100" value={focus} onChange={e => setFocus(e.target.value)}>
-          {focusOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-        </select>
-        <select className="flex-1 px-4 py-2 rounded border border-accent bg-white text-accent text-base dark:bg-neutral-800 dark:border-neutral-600 dark:text-gray-100" value={duration} onChange={e => setDuration(e.target.value)}>
-          {durationOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-        </select>
-        <select className="flex-1 px-4 py-2 rounded border border-accent bg-white text-accent text-base dark:bg-neutral-800 dark:border-neutral-600 dark:text-gray-100" value={gender} onChange={e => setGender(e.target.value)}>
-          {genderOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-        </select>
+      <div className="w-full max-w-6xl mx-auto mb-12">
+        <div className="bg-gray-100 rounded-xl shadow-sm p-6 dark:bg-neutral-800 dark:border dark:border-neutral-700">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <select className="px-4 py-2 rounded border border-accent bg-white text-accent text-base dark:bg-neutral-800 dark:border-neutral-600 dark:text-gray-100" value={focus} onChange={e => setFocus(e.target.value)}>
+              {focusOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+            </select>
+            <select className="px-4 py-2 rounded border border-accent bg-white text-accent text-base dark:bg-neutral-800 dark:border-neutral-600 dark:text-gray-100" value={duration} onChange={e => setDuration(e.target.value)}>
+              {durationOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+            </select>
+            <select className="px-4 py-2 rounded border border-accent bg-white text-accent text-base dark:bg-neutral-800 dark:border-neutral-600 dark:text-gray-100" value={gender} onChange={e => setGender(e.target.value)}>
+              {genderOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+            </select>
+            <select className="px-4 py-2 rounded border border-accent bg-white text-accent text-base dark:bg-neutral-800 dark:border-neutral-600 dark:text-gray-100" value={type} onChange={e => setType(e.target.value)}>
+              {typeOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+            </select>
+          </div>
+        </div>
       </div>
       {/* Expandable List Layout for Templates */}
-      <div className="w-full bg-white rounded-2xl shadow-lg dark:bg-neutral-800 dark:border dark:border-neutral-700">
+      <div className="w-full bg-gray-100 rounded-2xl shadow-lg dark:bg-neutral-800 dark:border dark:border-neutral-700">
         {filteredTemplates.length === 0 ? (
           <div className="text-accent text-center py-12 dark:text-gray-100">No templates found for the selected filters.</div>
         ) : (
@@ -227,6 +274,7 @@ function TemplatesPage({ onAddToMyPrograms }) {
                     <div className="flex gap-2 flex-shrink-0">
                       <span className="bg-primary text-secondary text-xs px-3 py-1 rounded-full font-medium">{template.duration}</span>
                       <span className="bg-accent text-secondary text-xs px-3 py-1 rounded-full font-medium">{template.gender}</span>
+                      <span className="bg-gray-600 text-white text-xs px-3 py-1 rounded-full font-medium dark:bg-gray-400 dark:text-neutral-900">{template.type}</span>
                     </div>
                   </div>
                 </div>
@@ -243,7 +291,7 @@ function TemplatesPage({ onAddToMyPrograms }) {
                               <div className="font-semibold text-accent mb-3 dark:text-accent">Week {week.week}</div>
                               <div className="space-y-3">
                                 {week.days.map(day => (
-                                  <div key={day.day} className="bg-white rounded-lg p-3 border border-accent/10 dark:bg-neutral-800 dark:border-neutral-700">
+                                  <div key={day.day} className="bg-gray-200 rounded-lg p-3 border border-accent/10 dark:bg-neutral-800 dark:border-neutral-700">
                                     <div className="font-semibold text-primary mb-2 dark:text-accent">Day {day.day}</div>
                                     <div className="overflow-x-auto">
                                       <table className="min-w-full text-left text-xs md:text-sm dark:text-gray-100">
