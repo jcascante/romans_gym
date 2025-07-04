@@ -90,4 +90,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Author
 
-Juan Cascante - [GitHub](https://github.com/jcascante) 
+Juan Cascante - [GitHub](https://github.com/jcascante)
