@@ -57,6 +57,51 @@ pnpm dev
 pnpm build
 ```
 
+## Development with ngrok
+
+This project is configured to work with ngrok for external access during development. This is useful for testing on mobile devices or sharing your development server with others.
+
+### Prerequisites
+
+1. Install ngrok:
+   - **macOS**: `brew install ngrok`
+   - **Windows**: Download from [ngrok.com](https://ngrok.com)
+   - **Linux**: Download from [ngrok.com](https://ngrok.com)
+
+2. Sign up for a free ngrok account at [ngrok.com](https://ngrok.com)
+
+3. Get your authtoken from the ngrok dashboard and authenticate:
+```bash
+ngrok config add-authtoken YOUR_AUTH_TOKEN
+```
+
+### Running with ngrok
+
+1. Start your development server:
+```bash
+cd frontend
+pnpm dev
+```
+
+2. In a new terminal, start ngrok to expose your local server:
+```bash
+ngrok http 5173
+```
+
+3. ngrok will provide you with a public URL (e.g., `https://abc123.ngrok-free.app`) that you can use to access your app from anywhere.
+
+### Configuration
+
+The project is pre-configured to work with ngrok through the `vite.config.js` file, which includes:
+- Host binding to allow external connections
+- Allowed hosts for ngrok domains (`.ngrok-free.app` and `.ngrok.io`)
+
+### Troubleshooting
+
+- If you get CORS errors, make sure your ngrok URL is included in the `allowedHosts` array in `vite.config.js`
+- For free ngrok accounts, you'll get a new URL each time you restart ngrok
+- The development server must be running on port 5173 for ngrok to work properly
+
 ## Project Structure
 
 ```
