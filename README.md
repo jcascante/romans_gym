@@ -9,13 +9,19 @@ A modern fitness application built with React that helps users discover and mana
 - **Program Management**: Add templates to your personal programs
 - **Responsive Design**: Modern UI that works on desktop and mobile
 - **Dark Mode Support**: Built-in dark/light theme switching
+- **Drag & Drop**: Interactive exercise reordering with drag and drop functionality
+- **Landing Page**: Professional gym landing page with testimonials and features
+- **Navigation**: Clean routing between templates, programs, and home page
 
 ## Tech Stack
 
-- **Frontend**: React 18 with Vite
-- **Styling**: Tailwind CSS
+- **Frontend**: React 19 with Vite
+- **Styling**: Tailwind CSS with PostCSS
 - **Package Manager**: pnpm
 - **Build Tool**: Vite
+- **Routing**: React Router DOM v7
+- **Drag & Drop**: @hello-pangea/dnd
+- **Linting**: ESLint with React-specific rules
 
 ## Getting Started
 
@@ -57,16 +63,25 @@ pnpm build
 romans_gym/
 ├── frontend/
 │   ├── src/
-│   │   ├── assets/          # Images and static assets
-│   │   ├── components/      # React components
-│   │   ├── App.jsx          # Main app component
-│   │   ├── Layout.jsx       # Layout wrapper
-│   │   ├── TemplatesPage.jsx # Templates browsing page
-│   │   └── main.jsx         # App entry point
-│   ├── public/              # Public assets
-│   ├── package.json         # Dependencies and scripts
-│   └── vite.config.js       # Vite configuration
-└── README.md               # This file
+│   │   ├── assets/              # Images and static assets
+│   │   │   ├── bench_press_example.jpg
+│   │   │   ├── logo.jpg
+│   │   │   └── react.svg
+│   │   ├── App.jsx              # Main app component with routing
+│   │   ├── Layout.jsx           # Layout wrapper with navigation
+│   │   ├── TemplatesPage.jsx    # Templates browsing page
+│   │   ├── MyProgramsPage.jsx   # User's saved programs
+│   │   ├── TemplateCustomizer.jsx # Template customization component
+│   │   ├── main.jsx             # App entry point
+│   │   ├── App.css              # App-specific styles
+│   │   └── index.css            # Global styles
+│   ├── public/                  # Public assets
+│   ├── package.json             # Dependencies and scripts
+│   ├── vite.config.js           # Vite configuration
+│   ├── tailwind.config.js       # Tailwind CSS configuration
+│   ├── postcss.config.js        # PostCSS configuration
+│   └── eslint.config.js         # ESLint configuration
+└── README.md                    # This file
 ```
 
 ## Available Scripts
@@ -75,6 +90,14 @@ romans_gym/
 - `pnpm build` - Build for production
 - `pnpm preview` - Preview production build
 - `pnpm lint` - Run ESLint
+
+## Key Components
+
+- **LandingPage**: Professional gym landing page with hero section, features, and testimonials
+- **TemplatesPage**: Browse and filter workout templates
+- **MyProgramsPage**: View and manage saved workout programs
+- **TemplateCustomizer**: Customize workout templates with drag & drop functionality
+- **Layout**: Consistent layout wrapper with navigation
 
 ## Contributing
 
