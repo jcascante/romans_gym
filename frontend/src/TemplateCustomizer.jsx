@@ -67,9 +67,9 @@ function TemplateCustomizer({ templateName = 'Beginner Strength', category = 'St
   const nextTip = () => setTipIndex((tipIndex + 1) % feedbackTips.length);
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 p-8 bg-white rounded-xl shadow-lg max-w-5xl mx-auto mt-10">
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 p-4 lg:p-8 bg-white rounded-xl shadow-lg max-w-5xl mx-auto mt-10">
       {/* Sidebar */}
-      <aside className="md:w-1/4 w-full bg-[#fff5f5] border-l-4 border-primary rounded-lg p-4 mb-4 md:mb-0 flex flex-col items-center">
+      <aside className="lg:w-1/4 w-full bg-[#fff5f5] border-l-4 border-primary rounded-lg p-4 mb-4 lg:mb-0 flex flex-col items-center">
         <h3 className="text-primary font-bold mb-2">Feedback & Tips</h3>
         <div className="text-accent text-center mb-4">{feedbackTips[tipIndex]}</div>
         <button onClick={nextTip} className="bg-primary text-secondary px-4 py-1 rounded hover:bg-accent transition">Next Tip</button>
@@ -77,11 +77,11 @@ function TemplateCustomizer({ templateName = 'Beginner Strength', category = 'St
       {/* Main Customizer */}
       <div className="flex-1">
         <header className="mb-6">
-          <h2 className="text-2xl font-bold text-primary mb-1">{templateName}</h2>
+          <h2 className="text-xl lg:text-2xl font-bold text-primary mb-1">{templateName}</h2>
           <div className="text-accent font-semibold">Category: {category}</div>
         </header>
         {/* Controls */}
-        <div className="flex gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-4">
           <button onClick={handleUndo} className="bg-accent text-secondary px-3 py-1 rounded hover:bg-primary transition disabled:opacity-50" disabled={history.length === 0}>Undo</button>
           <button onClick={handleRedo} className="bg-accent text-secondary px-3 py-1 rounded hover:bg-primary transition disabled:opacity-50" disabled={future.length === 0}>Redo</button>
           <button onClick={handleAdd} className="bg-primary text-secondary px-4 py-1 rounded hover:bg-accent transition">Add Exercise</button>
@@ -94,37 +94,87 @@ function TemplateCustomizer({ templateName = 'Beginner Strength', category = 'St
                 {exercises.map((ex, idx) => (
                   <Draggable key={ex.id} draggableId={ex.id} index={idx}>
                     {(provided) => (
-                      <li ref={provided.innerRef} {...provided.draggableProps} className="bg-white border border-primary rounded-lg p-4 flex items-center gap-4 shadow">
-                        <span {...provided.dragHandleProps} className="cursor-move text-primary text-xl">☰</span>
-                        <input
-                          className="border-b-2 border-primary px-2 py-1 mr-2 flex-1 text-accent font-semibold bg-transparent focus:outline-none"
-                          value={ex.name}
-                          onChange={e => handleChange(ex.id, 'name', e.target.value)}
-                          placeholder="Exercise Name"
-                        />
-                        <input
-                          type="number"
-                          className="w-16 border-b-2 border-primary px-2 py-1 mr-2 text-accent bg-transparent focus:outline-none"
-                          value={ex.sets}
-                          min={1}
-                          onChange={e => handleChange(ex.id, 'sets', e.target.value)}
-                          placeholder="Sets"
-                        />
-                        <input
-                          type="number"
-                          className="w-16 border-b-2 border-primary px-2 py-1 mr-2 text-accent bg-transparent focus:outline-none"
-                          value={ex.reps}
-                          min={1}
-                          onChange={e => handleChange(ex.id, 'reps', e.target.value)}
-                          placeholder="Reps"
-                        />
-                        <input
-                          className="border-b-2 border-primary px-2 py-1 mr-2 text-accent bg-transparent focus:outline-none"
-                          value={ex.notes}
-                          onChange={e => handleChange(ex.id, 'notes', e.target.value)}
-                          placeholder="Notes"
-                        />
-                        <button onClick={() => handleDelete(ex.id)} className="text-red-600 hover:text-red-800 font-bold text-lg ml-2">✕</button>
+                      <li ref={provided.innerRef} {...provided.draggableProps} className="bg-white border border-primary rounded-lg p-4 shadow">
+                        {/* Mobile Layout */}
+                        <div className="lg:hidden space-y-3">
+                          <div className="flex items-center gap-3">
+                            <span {...provided.dragHandleProps} className="cursor-move text-primary text-xl">☰</span>
+                            <input
+                              className="border-b-2 border-primary px-2 py-1 flex-1 text-accent font-semibold bg-transparent focus:outline-none"
+                              value={ex.name}
+                              onChange={e => handleChange(ex.id, 'name', e.target.value)}
+                              placeholder="Exercise Name"
+                            />
+                            <button onClick={() => handleDelete(ex.id)} className="text-red-600 hover:text-red-800 font-bold text-lg">✕</button>
+                          </div>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-xs text-accent/70 mb-1">Sets</label>
+                              <input
+                                type="number"
+                                className="w-full border-b-2 border-primary px-2 py-1 text-accent bg-transparent focus:outline-none"
+                                value={ex.sets}
+                                min={1}
+                                onChange={e => handleChange(ex.id, 'sets', e.target.value)}
+                                placeholder="Sets"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-xs text-accent/70 mb-1">Reps</label>
+                              <input
+                                type="number"
+                                className="w-full border-b-2 border-primary px-2 py-1 text-accent bg-transparent focus:outline-none"
+                                value={ex.reps}
+                                min={1}
+                                onChange={e => handleChange(ex.id, 'reps', e.target.value)}
+                                placeholder="Reps"
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <label className="block text-xs text-accent/70 mb-1">Notes</label>
+                            <input
+                              className="w-full border-b-2 border-primary px-2 py-1 text-accent bg-transparent focus:outline-none"
+                              value={ex.notes}
+                              onChange={e => handleChange(ex.id, 'notes', e.target.value)}
+                              placeholder="Notes"
+                            />
+                          </div>
+                        </div>
+                        
+                        {/* Desktop Layout */}
+                        <div className="hidden lg:flex items-center gap-4">
+                          <span {...provided.dragHandleProps} className="cursor-move text-primary text-xl">☰</span>
+                          <input
+                            className="border-b-2 border-primary px-2 py-1 mr-2 flex-1 text-accent font-semibold bg-transparent focus:outline-none"
+                            value={ex.name}
+                            onChange={e => handleChange(ex.id, 'name', e.target.value)}
+                            placeholder="Exercise Name"
+                          />
+                          <input
+                            type="number"
+                            className="w-16 border-b-2 border-primary px-2 py-1 mr-2 text-accent bg-transparent focus:outline-none"
+                            value={ex.sets}
+                            min={1}
+                            onChange={e => handleChange(ex.id, 'sets', e.target.value)}
+                            placeholder="Sets"
+                          />
+                          <input
+                            type="number"
+                            className="w-16 border-b-2 border-primary px-2 py-1 mr-2 text-accent bg-transparent focus:outline-none"
+                            value={ex.reps}
+                            min={1}
+                            onChange={e => handleChange(ex.id, 'reps', e.target.value)}
+                            placeholder="Reps"
+                          />
+                          <input
+                            className="border-b-2 border-primary px-2 py-1 mr-2 text-accent bg-transparent focus:outline-none"
+                            value={ex.notes}
+                            onChange={e => handleChange(ex.id, 'notes', e.target.value)}
+                            placeholder="Notes"
+                          />
+                          <button onClick={() => handleDelete(ex.id)} className="text-red-600 hover:text-red-800 font-bold text-lg ml-2">✕</button>
+                        </div>
                       </li>
                     )}
                   </Draggable>
