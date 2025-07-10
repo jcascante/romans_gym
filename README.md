@@ -1,6 +1,6 @@
-# Romans Gym
+# GymApp
 
-A modern fitness application built with React that helps users discover and manage workout programs. The app features a collection of workout templates and allows users to customize and save their own programs.
+A modern comprehensive fitness application built with React and React Native that helps users discover and manage workout programs. The project includes both a web application and a mobile app, featuring comprehensive workout templates and allowing users to customize and save their own programs.
 
 ## Features
 
@@ -29,13 +29,14 @@ A modern fitness application built with React that helps users discover and mana
 
 - Node.js (version 16 or higher)
 - pnpm (recommended) or npm
+- Expo CLI (for mobile app): `npm install -g @expo/cli`
 
-### Installation
+### Web Application
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/jcascante/romans_gym.git
-cd romans_gym
+git clone https://github.com/jcascante/gymapp.git
+cd gymapp
 ```
 
 2. Install dependencies:
@@ -50,6 +51,28 @@ pnpm dev
 ```
 
 4. Open your browser and navigate to `http://localhost:5173`
+
+### Mobile Application
+
+1. Navigate to the mobile app directory:
+```bash
+cd mobile-app
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm start
+```
+
+4. Scan the QR code with Expo Go app on your mobile device, or run on simulator:
+   - For iOS: `npm run ios`
+   - For Android: `npm run android`
+   - For web: `npm run web`
 
 ### Building for Production
 
@@ -105,8 +128,8 @@ The project is pre-configured to work with ngrok through the `vite.config.js` fi
 ## Project Structure
 
 ```
-romans_gym/
-├── frontend/
+gymapp/
+├── frontend/                    # Web application (React + Vite)
 │   ├── src/
 │   │   ├── assets/              # Images and static assets
 │   │   │   ├── bench_press_example.jpg
@@ -126,23 +149,51 @@ romans_gym/
 │   ├── tailwind.config.js       # Tailwind CSS configuration
 │   ├── postcss.config.js        # PostCSS configuration
 │   └── eslint.config.js         # ESLint configuration
+├── mobile-app/                  # Mobile application (React Native + Expo)
+│   ├── src/
+│   │   ├── screens/             # Screen components
+│   │   │   ├── LandingPage.tsx  # Landing page with hero section
+│   │   │   ├── TemplatesPage.tsx # Templates browsing page
+│   │   │   ├── MyProgramsPage.tsx # User's saved programs
+│   │   │   └── TemplateCustomizer.tsx # Template customization
+│   │   ├── components/          # Reusable components
+│   │   └── types/              # TypeScript type definitions
+│   ├── assets/                  # Images and static assets
+│   ├── App.tsx                  # Main app component with navigation
+│   ├── package.json             # Dependencies and scripts
+│   └── README.md               # Mobile app documentation
 └── README.md                    # This file
 ```
 
 ## Available Scripts
 
+### Web Application
 - `pnpm dev` - Start development server
 - `pnpm build` - Build for production
 - `pnpm preview` - Preview production build
 - `pnpm lint` - Run ESLint
 
+### Mobile Application
+- `npm start` - Start the Expo development server
+- `npm run android` - Run on Android emulator/device
+- `npm run ios` - Run on iOS simulator/device
+- `npm run web` - Run in web browser
+
 ## Key Components
 
+### Web Application
 - **LandingPage**: Professional gym landing page with hero section, features, and testimonials
 - **TemplatesPage**: Browse and filter workout templates
 - **MyProgramsPage**: View and manage saved workout programs
 - **TemplateCustomizer**: Customize workout templates with drag & drop functionality
 - **Layout**: Consistent layout wrapper with navigation
+
+### Mobile Application
+- **LandingPage**: Professional gym landing page with hero section, features, and testimonials
+- **TemplatesPage**: Browse and filter workout templates with search functionality
+- **MyProgramsPage**: View and manage saved workout programs
+- **TemplateCustomizer**: Customize workout templates with exercise editing
+- **Navigation**: Tab-based navigation with React Navigation
 
 ## Contributing
 

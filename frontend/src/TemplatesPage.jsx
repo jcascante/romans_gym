@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import logo from './assets/logo.jpg';
+import logo from './assets/logo.png';
 import benchPressImg from './assets/bench_press_example.jpg';
 
 const placeholderImg = 'https://via.placeholder.com/40x40?text=Ex';
@@ -464,16 +464,14 @@ function TemplatesPage({ onAddToMyPrograms }) {
               >
                 {/* Template Header */}
                 <div className="px-4 sm:px-6 py-3">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-                    <div className="flex items-center gap-3">
-                      <img src={logo} alt="logo" className="w-8 h-8 rounded bg-secondary flex-shrink-0" />
-                      <div className="flex-1 min-w-0">
-                        <div className="uppercase text-xs text-accent font-semibold tracking-widest mb-1 text-left dark:text-gray-300">{template.focus}</div>
-                        <div className="font-bold text-primary text-lg leading-tight text-left dark:text-gray-300">{template.name}</div>
-                        <div className="mt-2 text-accent text-sm leading-relaxed text-left dark:text-gray-100">{template.description}</div>
-                      </div>
+                  <div className="flex items-center gap-4">
+                    <img src={logo} alt="logo" className="w-8 h-8 rounded bg-secondary flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="uppercase text-xs text-accent font-semibold tracking-widest mb-1 text-left dark:text-gray-300">{template.focus}</div>
+                      <div className="font-bold text-primary text-lg leading-tight text-left dark:text-gray-300">{template.name}</div>
+                      <div className="mt-2 text-accent text-sm leading-relaxed text-left dark:text-gray-100">{template.description}</div>
                     </div>
-                    <div className="flex flex-wrap gap-2 flex-shrink-0">
+                    <div className="flex gap-2 flex-shrink-0">
                       <span className="bg-primary text-secondary text-xs px-3 py-1 rounded-full font-medium">{template.duration}</span>
                       <span className="bg-accent text-secondary text-xs px-3 py-1 rounded-full font-medium">{template.gender}</span>
                       <span className="bg-gray-600 text-white text-xs px-3 py-1 rounded-full font-medium dark:bg-gray-400 dark:text-neutral-900">{template.type}</span>
@@ -586,14 +584,32 @@ function TemplatesPage({ onAddToMyPrograms }) {
                       </div>
                     </div>
                     <button
-                      className="mt-4 bg-primary text-secondary px-6 py-2 rounded-lg shadow hover:bg-accent transition font-semibold disabled:opacity-50 disabled:cursor-not-allowed dark:bg-accent dark:text-neutral-900 dark:hover:bg-primary"
+                      className={`mt-4 px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${
+                        myProgramsIds.includes(template.id)
+                          ? 'bg-accent/10 text-accent border-2 border-accent/30 dark:bg-neutral-700 dark:text-gray-200 dark:border-neutral-600'
+                          : 'bg-primary text-white hover:bg-primary/90 dark:bg-primary dark:text-white dark:hover:bg-primary/90'
+                      }`}
                       onClick={(e) => {
                         e.stopPropagation();
                         handleAddToMyProgramsClick(template);
                       }}
                       disabled={myProgramsIds.includes(template.id)}
                     >
-                      {myProgramsIds.includes(template.id) ? 'Added to My Programs' : 'Add to My Programs'}
+                      {myProgramsIds.includes(template.id) ? (
+                        <span className="flex items-center gap-2">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                          Added to My Programs
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-2">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+                          </svg>
+                          Add to My Programs
+                        </span>
+                      )}
                     </button>
                   </div>
                 )}

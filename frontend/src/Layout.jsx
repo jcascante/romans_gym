@@ -1,4 +1,4 @@
-import logo from './assets/logo.jpg';
+import logo from './assets/logo.png';
 import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
@@ -20,8 +20,8 @@ function Layout({ children }) {
       {/* Header/Navbar */}
       <nav className="w-full flex items-center px-4 sm:px-8 py-4 bg-white shadow-md sticky top-0 z-10 dark:bg-neutral-800">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Roma's Gym Logo" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-primary" />
-          <span className="text-lg sm:text-xl font-bold text-primary">Roma's Gym</span>
+          <img src={logo} alt="GymApp Logo" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-primary" />
+          <span className="text-lg sm:text-xl font-bold text-primary">GymApp</span>
         </div>
         
         {/* Mobile menu button */}
@@ -143,8 +143,8 @@ function Layout({ children }) {
       {/* Footer */}
       <footer id="contact" className="w-full bg-accent text-secondary py-8 flex flex-col items-center mt-auto dark:bg-neutral-800 dark:text-accent">
         <div className="mb-2 font-semibold text-center px-4">123 Fitness Ave, City, Country</div>
-        <div className="mb-2 text-center px-4 text-sm sm:text-base">Phone: (123) 456-7890 | Email: info@romasgym.com</div>
-        <div className="text-sm">&copy; {new Date().getFullYear()} Roma's Gym. All rights reserved.</div>
+        <div className="mb-2 text-center px-4 text-sm sm:text-base">Phone: (123) 456-7890 | Email: info@gymapp.com</div>
+        <div className="text-sm">&copy; {new Date().getFullYear()} GymApp. All rights reserved.</div>
       </footer>
     </div>
   );

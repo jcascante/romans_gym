@@ -1,6 +1,6 @@
-# React + Vite
+# GymApp Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React web application for comprehensive fitness training and workout program management.
 
 Currently, two official plugins are available:
 

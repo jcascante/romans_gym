@@ -8,9 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#D7262B', // Red from logo
+        primary: '#2563EB', // Nice blue (blue-600) - not too bright
         secondary: '#FFFFFF', // White
-        accent: '#232323', // Black/gray for accents
+        accent: '#1E40AF', // Darker blue for accents (blue-700)
       },
     },
   },

@@ -1,5 +1,5 @@
 import './App.css'
-import logo from './assets/logo.jpg'
+import logo from './assets/logo.png'
 import TemplateCustomizer from './TemplateCustomizer';
 import TemplatesPage from './TemplatesPage';
 import MyProgramsPage from './MyProgramsPage';
@@ -38,29 +38,29 @@ function LandingPage() {
     <>
       {/* Hero Section */}
       <section id="home" className="w-full bg-primary text-secondary flex flex-col items-center justify-center py-16 px-4 text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('/src/assets/logo.jpg')] bg-center bg-no-repeat bg-contain pointer-events-none" />
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">Ready to get strong at Roma's Gym?</h1>
-        <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto font-medium">Achieve your fitness goals with modern facilities, expert trainers, and fully customizable programming templates.</p>
+        <div className="absolute inset-0 opacity-10 bg-[url('/src/assets/logo.png')] bg-center bg-no-repeat bg-contain pointer-events-none" />
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">Ready to get strong with GymApp?</h1>
+        <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto font-medium">Achieve your fitness goals with comprehensive training, expert guidance, and fully customizable programming templates.</p>
         <button onClick={() => navigate('/templates')} className="bg-secondary text-primary px-8 py-4 rounded-lg font-bold text-lg shadow hover:bg-accent hover:text-white transition">View Templates</button>
       </section>
       {/* Features Section */}
       <section id="features" className="w-full flex flex-col items-center py-16 px-4 bg-white dark:bg-neutral-900">
-        <h2 className="text-3xl md:text-4xl font-bold text-primary mb-10 dark:text-gray-100">Why Choose Roma's Gym?</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-primary mb-10 dark:text-gray-100">Why Choose GymApp?</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
           <div className="bg-secondary rounded-xl shadow-lg p-8 flex flex-col items-center border-t-4 border-primary dark:bg-neutral-800 dark:text-gray-100 dark:border-accent">
             <span className="text-primary text-4xl mb-3">🏋️‍♂️</span>
-            <h3 className="font-bold text-xl mb-2 text-accent dark:text-gray-100">Expert Trainers</h3>
-            <p className="text-center text-accent dark:text-gray-100">Our certified trainers help you reach your goals safely and efficiently with personalized guidance.</p>
+            <h3 className="font-bold text-xl mb-2 text-accent dark:text-gray-100">AI-Powered Coaching</h3>
+            <p className="text-center text-accent dark:text-gray-100">Our AI coaches help you reach your goals safely and efficiently with personalized guidance and smart recommendations.</p>
           </div>
           <div className="bg-secondary rounded-xl shadow-lg p-8 flex flex-col items-center border-t-4 border-primary dark:bg-neutral-800 dark:text-gray-100 dark:border-accent">
             <span className="text-primary text-4xl mb-3">💪</span>
-            <h3 className="font-bold text-xl mb-2 text-accent dark:text-gray-100">Modern Equipment</h3>
-            <p className="text-center text-accent dark:text-gray-100">State-of-the-art equipment for all training styles and levels, ensuring a premium workout experience.</p>
+            <h3 className="font-bold text-xl mb-2 text-accent dark:text-gray-100">Smart Training</h3>
+            <p className="text-center text-accent dark:text-gray-100">Intelligent workout tracking and progress analysis for all training styles and levels, ensuring optimal results.</p>
           </div>
           <div className="bg-secondary rounded-xl shadow-lg p-8 flex flex-col items-center border-t-4 border-primary dark:bg-neutral-800 dark:text-gray-100 dark:border-accent">
             <span className="text-primary text-4xl mb-3">📝</span>
-            <h3 className="font-bold text-xl mb-2 text-accent dark:text-gray-100">Custom Programs</h3>
-            <p className="text-center text-accent dark:text-gray-100">Choose and customize programming templates to fit your unique needs and track your progress easily.</p>
+            <h3 className="font-bold text-xl mb-2 text-accent dark:text-gray-100">Adaptive Programs</h3>
+            <p className="text-center text-accent dark:text-gray-100">AI-generated and customizable programming templates that adapt to your progress and unique fitness needs.</p>
           </div>
         </div>
       </section>
@@ -68,10 +68,10 @@ function LandingPage() {
       <section id="testimonials" className="w-full bg-primary bg-opacity-5 py-16 px-4 flex flex-col items-center dark:bg-neutral-900">
         <h2 className="text-3xl md:text-4xl font-bold text-primary mb-10 dark:text-gray-100">What Our Members Say</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
-          {[{
-            quote: "Roma's Gym has completely changed my fitness journey. The custom templates are a game changer!",
-            name: 'Alex P.',
-          }, {
+          {[              {
+                quote: "GymApp has completely changed my fitness journey. The comprehensive templates are a game changer!",
+                name: 'Alex P.',
+              }, {
             quote: "The trainers are knowledgeable and the equipment is top-notch. Highly recommend!",
             name: 'Maria S.',
           }, {
